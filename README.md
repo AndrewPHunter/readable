@@ -14,6 +14,7 @@ scripts found at the root of the project.
 The project makes the purposeful decision of grouping reusable components into a common controls directory which are all exported by the root
 index.js file for each of locating assets. An example of this can be found below:
 </p>
+
 ```js
 import {
   PostDetailPage,
