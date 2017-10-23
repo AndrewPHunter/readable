@@ -1,0 +1,36 @@
+@import '../../../globals';
+
+.postDetail-footer{
+  footer{
+    padding-top:20px;
+  }
+}
+.postDetail-footer--vote{
+  h3{
+    display: inline-block;
+    padding-right:10px;
+  }
+  i{
+    padding-right: 5px;
+  }
+  i.thumbUp{
+    color: $md-green-a-400;
+  }
+  i.thumbDown{
+    color: $md-red-a-400;
+  }
+}
+.postDetail-footer--edit{
+  button{
+    float:right;
+    padding: 10px;
+    margin-right:20px;
+    color: $md-white-base
+  }
+  button.edit{
+    background-color: $md-green-400;
+  }
+  button.delete{
+    background-color: $md-red-400;
+  }
+}

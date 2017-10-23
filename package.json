@@ -1,0 +1,30 @@
+{
+  "name": "readable",
+  "version": "1.0.0",
+  "description": "Udacity react nanodegree project 2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewPHunter/readable.git"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.1"
+  },
+  "scripts": {
+    "setup-server": "cd api-server && npm install",
+    "setup-frontend": "cd frontend && npm install",
+    "setup-children": "npm-run-all -s setup-server setup-frontend",
+    "setup": "npm install && setup-children",
+    "start-server": "cd api-server && npm start",
+    "start-app": "cd frontend && npm start",
+    "start": "npm-run-all -p start-server start-app"
+  },
+  "author": "Andrew Hunter",
+  "license": "MIT",
+  "homepage": "https://github.com/AndrewPHunter/readable.git#readme",
+  "keywords": [
+    "react",
+    "redux",
+    "nanodegree",
+    "udacity"
+  ]
+}

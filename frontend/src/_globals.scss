@@ -1,0 +1,27 @@
+@import '../node_modules/react-md/src/scss/react-md';
+
+//variable overrides
+
+
+
+.box-shadow--1{
+  @include md-box-shadow(1);
+}
+
+.box-shadow--2{
+  @include md-box-shadow(2);
+}
+
+.box-shadow--3{
+  @include md-box-shadow(3);
+}
+
+.box-shadow--4{
+  @include md-box-shadow(4);
+}
+
+.box-shadow--5{
+  @include md-box-shadow(5);
+}
+
+@include react-md-everything();

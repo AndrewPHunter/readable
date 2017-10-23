@@ -1,0 +1,25 @@
+@import '../_globals.scss';
+
+li {
+  &.active{
+    i,
+    a{
+      color: $md-primary-color;
+      font-weight: 600;
+      font-size: large;
+      transition: color .3s ease;
+      transition: font-weight .3s ease;
+      transition: font-size .3s ease;
+    }
+  }
+  &.active-group{
+    i{
+      color: $md-primary-color;
+      transition: color .3s ease;
+    }
+  }
+  a{
+    text-decoration: none;
+    @extend .md-text;
+  }
+}

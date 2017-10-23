@@ -1,0 +1,16 @@
+@import '../../../globals';
+
+.commands{
+  button{
+    color:$md-white-base;
+    margin: 10px;
+    float:right;
+  }
+  button.save{
+    background-color: $md-green-400;
+  }
+  button.cancel{
+    background-color: $md-red-400;
+  }
+}
+

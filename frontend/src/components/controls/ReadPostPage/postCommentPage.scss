@@ -1,0 +1,50 @@
+@import '../../../globals';
+
+.add-comment{
+  color: $md-green-400;
+}
+.comment-list{
+  list-style: none;
+}
+
+.comment-list--vote{
+
+  text-align: right;
+
+  ul{
+    list-style: none;
+    & li{
+      font-size: smaller;
+
+      & i.thumb-down{
+        color: $md-red-a-400;
+      }
+
+      & i.thumb-up{
+        color: $md-green-a-400;
+      }
+    }
+  }
+}
+
+.comment-list--commands{
+  button{
+    float:left;
+    padding: 10px;
+    margin-right:20px;
+    color: $md-white-base
+  }
+  button.edit{
+    background-color: $md-green-400;
+  }
+  button.delete{
+    background-color: $md-red-400;
+  }
+}
+
+.comment-footer--commands{
+  button{
+    color: $md-white-base;
+    background-color: $md-green-400;
+  }
+}
