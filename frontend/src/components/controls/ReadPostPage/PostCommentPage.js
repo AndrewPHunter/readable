@@ -24,7 +24,7 @@ const Footer = ({onAddComment})=>(
 
 const PostCommentPage = ({comments, upVote, downVote, addComment, editComment, deleteComment})=>(
   <ExpansionList className="md-cell md-cell--12">
-    <ExpansionPanel label="Comments"
+    <ExpansionPanel label={`${comments.length} Comments`}
                     defaultExpanded
                     footer={<Footer onAddComment={addComment}/>}
     >
