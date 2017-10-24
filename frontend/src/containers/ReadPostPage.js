@@ -111,6 +111,7 @@ class ReadPostPage extends Component{
       <div>
         <PostDetailPage
           post={this.props.post}
+          commentCount={this.props.comments.length}
           upVote={this.props.upVotePost}
           downVote={this.props.downVotePost}
           onEdit={this.onEditPost}
@@ -154,7 +155,7 @@ class ReadPostPage extends Component{
 
 const mapStateToProps = (state, {match})=>({
   post: state.posts.filter(post=>post.id === match.params.id)[0] || {},
-  comments: state.comments.filter(comment=>!comment.deleted).sort(sortBy('-voteScore')),
+  comments: state.comments.filter(comment=>!comment.deleted && comment.parentId === match.params.id).sort(sortBy('-voteScore')),
   categories: state.categories.map(category=>category.name)
 });
 
