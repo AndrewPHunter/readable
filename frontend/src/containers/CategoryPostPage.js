@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {SortablePostTable} from '../components/controls';
+import * as postActions from '../actions/post.actions';
 
 class CategoryPostPage extends Component{
 
@@ -20,6 +21,8 @@ class CategoryPostPage extends Component{
         id='CategoryPostTable'
         rows={this.props.posts}
         rowSelected={this.onPostSelected}
+        upVote={this.props.upVotePost}
+        downVote={this.props.downVotePost}
       />
     );
   }
@@ -29,4 +32,9 @@ const mapStateToProps = (state, {match})=>({
   posts: state.posts.filter(post => (!post.deleted && post.category === match.params.category))
 });
 
-export default withRouter(connect(mapStateToProps)(CategoryPostPage));
+const mapDispatchToProps = (dispatch) => ({
+  upVotePost: (id)=>dispatch(postActions.upVote(id)),
+  downVotePost: (id)=>dispatch(postActions.downVote(id)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategoryPostPage));

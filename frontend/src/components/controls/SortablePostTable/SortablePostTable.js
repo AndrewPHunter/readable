@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Paper} from 'react-md/lib/Papers';
 import {DataTable, TableHeader, TableBody, TableRow, TableColumn} from 'react-md/lib/DataTables';
+import {FontIcon} from 'react-md/lib/FontIcons';
 import predicate from 'sort-by';
 
 import './SortablePostTable.css';
@@ -13,7 +14,9 @@ export default class SortablePostTable extends Component{
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     rowSelected: PropTypes.func,
     sortBy: PropTypes.string,
-    ascending: PropTypes.bool
+    ascending: PropTypes.bool,
+    upVote: PropTypes.func.isRequired,
+    downVote: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -83,14 +86,17 @@ export default class SortablePostTable extends Component{
         <TableColumn sorted={(by==='voteScore') ? ascending : null} numeric role="button" onClick={this.sortPosts.bind(null, 'voteScore', false)}>
           Vote Score
         </TableColumn>
+        <TableColumn>
+          Vote
+        </TableColumn>
       </TableRow>
     </TableHeader>
   );
 
-  mapRowsToTableRows = (rows)=>(
+  mapRowsToTableRows = (rows, upVote, downVote)=>(
     rows.map(row=>(
-      <TableRow key={row.id} selectable={false} onClick={this.props.rowSelected.bind(null, row)}>
-        <TableColumn>
+      <TableRow key={row.id} selectable={false}>
+        <TableColumn onClick={this.props.rowSelected.bind(null, row)} className='md-pointer--hover'>
           {row.title}
         </TableColumn>
         <TableColumn>
@@ -105,16 +111,22 @@ export default class SortablePostTable extends Component{
         <TableColumn>
           {row.voteScore}
         </TableColumn>
+        <TableColumn>
+          <div className='post-table--vote'>
+            <FontIcon className="thumbUp md-pointer--hover" onClick={upVote.bind(null, row.id)}>thumb_up</FontIcon>
+            <FontIcon className="thumbDown md-pointer--hover" onClick={downVote.bind(null, row.id)}>thumb_down</FontIcon>
+          </div>
+        </TableColumn>
       </TableRow>
     ))
   );
 
   render(){
 
-    const {id} = this.props;
+    const {id, upVote, downVote} = this.props;
     const {rows, sortBy, ascending} = this.state;
     const tableHeader = this.buildTableHeader({by: sortBy.replace('-',''), ascending});
-    const tableRows = this.mapRowsToTableRows(rows);
+    const tableRows = this.mapRowsToTableRows(rows, upVote, downVote);
 
 
     return(

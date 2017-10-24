@@ -3,3 +3,15 @@
 .postTable {
   background-color: $md-white-base;
 }
+
+.post-table--vote{
+  i{
+    padding-right: 5px;
+  }
+  i.thumbUp{
+    color: $md-green-a-400;
+  }
+  i.thumbDown{
+    color: $md-red-a-400;
+  }
+}
