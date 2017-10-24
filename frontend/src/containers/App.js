@@ -49,7 +49,7 @@ class App extends Component {
             <Route exact path="/" component={HomePage}/>
             <Route path="/categories/:category" component={CategoryPostPage}/>
             <Route exact path="/post/newPost" component={NewPostPage}/>
-            <Route exact path="/posts/:id" component={ReadPostPage}/>
+            <Route path="/:category/:id" component={ReadPostPage}/>
           </Switch>
         </Shell>
       </BrowserRouter>

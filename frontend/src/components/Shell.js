@@ -15,13 +15,12 @@ class Shell extends PureComponent{
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
     children: PropTypes.node.isRequired,
     location: PropTypes.object.isRequired,
-
   };
 
   pageTitleFromPath = (location)=>{
     const path = location.split('/');
 
-    const page = (path[1]==='posts') ?
+    const page = (path[1]!=='categories' && path[1]!== 'post' && path[1]) ?
       'post' :
       path.pop() || 'home';
 

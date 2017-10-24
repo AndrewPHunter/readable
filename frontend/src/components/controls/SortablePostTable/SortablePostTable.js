@@ -65,8 +65,6 @@ export default class SortablePostTable extends Component{
 
   };
 
-  onRowSelected = ({id})=>this.props.rowSelected(id);
-
   buildTableHeader = ({by, ascending})=>(
     <TableHeader>
       <TableRow selectable={false}>
@@ -91,7 +89,7 @@ export default class SortablePostTable extends Component{
 
   mapRowsToTableRows = (rows)=>(
     rows.map(row=>(
-      <TableRow key={row.id} selectable={false} onClick={this.onRowSelected.bind(null, row)}>
+      <TableRow key={row.id} selectable={false} onClick={this.props.rowSelected.bind(null, row)}>
         <TableColumn>
           {row.title}
         </TableColumn>

@@ -11,8 +11,8 @@ class CategoryPostPage extends Component{
     history: PropTypes.object.isRequired
   };
 
-  onPostSelected = (id)=>
-    this.props.history.push(`/posts/${id}`);
+  onPostSelected = (post)=>
+    this.props.history.push(`/${post.category}/${post.id}`);
 
   render(){
     return(
