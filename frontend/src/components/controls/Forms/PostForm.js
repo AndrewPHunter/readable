@@ -76,7 +76,6 @@ class PostForm extends Component{
           <Autocomplete id='category'
                         className='md-cell md-cell--4 md-cell--bottom'
                         placeholder='Category'
-                        inline
                         value={post.category}
                         data={categories}
                         onChange={(value)=>this.onFieldUpdate({category: value})}
