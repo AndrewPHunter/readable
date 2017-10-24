@@ -2,7 +2,7 @@
 [React Nanodegree Project](https://www.udacity.com/course/react-nanodegree--nd019)
 
 This project is based off of the [Readable API Server](https://github.com/udacity/reactnd-project-readable-starter) starting template
-which contained the code for the backend api server that is interacted with for the development of the prject.
+which contained the code for the backend api server that is interacted with for the development of the project.
 
 ### Directory Structure
 <p>
