@@ -39,7 +39,7 @@ import {
 * clone the repo
 * setup projects and dependencies
 ```sh
-yarn setup
+yarn install
 ```
 * start the backend and development server
 ```sh
