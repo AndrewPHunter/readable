@@ -13,7 +13,7 @@
     "setup-server": "cd api-server && npm install",
     "setup-frontend": "cd frontend && npm install",
     "setup-children": "npm-run-all -s setup-server setup-frontend",
-    "setup": "npm install && setup-children",
+    "postinstall": "setup-children",
     "start-server": "cd api-server && npm start",
     "start-app": "cd frontend && npm start",
     "start": "npm-run-all -p start-server start-app"
