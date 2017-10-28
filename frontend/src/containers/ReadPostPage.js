@@ -41,6 +41,10 @@ class ReadPostPage extends Component{
     this.props.loadComments(this.props.post.id);
   };
 
+  componentDidUpdate = ()=>{
+    this.props.loadComments(this.props.post.id);
+  };
+
   onEditPost = (e)=>{
     const {pageX, pageY} = e;
     e.preventDefault();

@@ -33,8 +33,9 @@ class CommentForm extends Component{
   };
 
   state = {
-    comment: {
+    comment:{
       ...CommentForm.defaultProps.comment,
+      'parentId': this.props.parentId,
       ...this.props.comment
     }
   };
