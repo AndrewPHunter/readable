@@ -246,6 +246,19 @@ app.get('/posts/:id/comments', (req, res) => {
       )
 })
 
+app.get('/comments/count', (req, res)=>{
+  comments.getCount(req.token)
+    .then(
+      (data)=>res.send(data),
+      (error)=>{
+        console.error(error);
+        res.status(500).send({
+          error: 'There was an error.'
+        })
+      }
+    )
+});
+
 app.get('/comments/:id', (req, res) => {
     comments.get(req.token, req.params.id)
       .then(

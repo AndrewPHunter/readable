@@ -53,6 +53,21 @@ function get (token, id) {
   })
 }
 
+function getCount(token){
+  return new Promise((res)=>{
+    let comments = getData(token);
+    let commentCountByPost =
+      Object.keys(comments)
+            .filter(key=>!comments[key].deleted)
+            .reduce((aggregate, key)=>{
+                const parentId = comments[key].parentId;
+                aggregate[parentId] = aggregate[parentId] ? aggregate[parentId] + 1 : 1;
+                return aggregate;
+            }, {});
+    res(commentCountByPost);
+  });
+}
+
 function add (token, comment) {
   return new Promise((res) => {
     let comments = getData(token)
@@ -121,6 +136,7 @@ function edit (token, id, comment) {
 module.exports = {
   get,
   getByParent,
+  getCount,
   add,
   vote,
   disableByParent,
