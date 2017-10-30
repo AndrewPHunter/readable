@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {SortablePostTable} from '../components/controls';
+import {doesExist} from '../utilities/helpers';
 import * as postActions from '../actions/post.actions';
 
 class CategoryPostPage extends Component{
@@ -28,9 +29,23 @@ class CategoryPostPage extends Component{
   }
 }
 
-const mapStateToProps = (state, {match})=>({
-  posts: state.posts.filter(post => (!post.deleted && post.category === match.params.category))
-});
+const mapStateToProps = ({posts, postCommentCount}, {match})=> {
+
+  const postViewModel =
+    posts
+      .filter(post => !post.deleted && post.category === match.params.category)
+      .map(post => ({
+        ...post,
+        ['commentCount']: doesExist(postCommentCount[post.id])
+          ? postCommentCount[post.id]
+          : 0
+
+      }));
+
+  return {
+    posts: postViewModel
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   upVotePost: (id)=>dispatch(postActions.upVote(id)),

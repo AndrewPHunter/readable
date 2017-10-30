@@ -83,10 +83,10 @@ export default class SortablePostTable extends Component{
         <TableColumn sorted={(by==='timestamp') ? ascending : null} role="button" onClick={this.sortPosts.bind(null,'timestamp', false)}>
           Date
         </TableColumn>
-        <TableColumn sorted={(by==='commentCount') ? ascending: null} numeric role="button" onClick={this.sortPosts.bind(null, 'commentCount', false)}>
+        <TableColumn sorted={(by==='commentCount') ? ascending: null} role="button" onClick={this.sortPosts.bind(null, 'commentCount', false)}>
           Comment Count
         </TableColumn>
-        <TableColumn sorted={(by==='voteScore') ? ascending : null} numeric role="button" onClick={this.sortPosts.bind(null, 'voteScore', false)}>
+        <TableColumn sorted={(by==='voteScore') ? ascending : null} role="button" onClick={this.sortPosts.bind(null, 'voteScore', false)}>
           Vote Score
         </TableColumn>
         <TableColumn>
@@ -111,10 +111,10 @@ export default class SortablePostTable extends Component{
         <TableColumn>
           {new Date(row.timestamp).toLocaleDateString()}
         </TableColumn>
-        <TableColumn>
+        <TableColumn numeric>
           {row.commentCount}
         </TableColumn>
-        <TableColumn>
+        <TableColumn numeric>
           {row.voteScore}
         </TableColumn>
         <TableColumn>
