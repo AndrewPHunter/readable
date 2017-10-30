@@ -13,7 +13,7 @@ import ReadPostPage from './ReadPostPage';
 import NewPostPage from './NewPostPage';
 
 import {loadCategories} from '../actions/category.actions';
-import {loadAll} from '../actions/post.actions';
+import {loadAll, loadCommentCount} from '../actions/post.actions';
 
 import './App.css';
 
@@ -27,12 +27,13 @@ class App extends Component {
   static propTypes = {
     categories: PropTypes.arrayOf(PropTypes.string).isRequired,
     loadCategories: PropTypes.func.isRequired,
-    loadPosts: PropTypes.func.isRequired
+    loadPosts: PropTypes.func.isRequired,
+    loadCommentCount: PropTypes.func.isRequired
   };
 
   componentDidMount = async ()=>{
-    const {loadCategories, loadPosts} = this.props;
-    await Promise.all([loadCategories(), loadPosts()]);
+    const {loadCategories, loadPosts, loadCommentCount} = this.props;
+    await Promise.all([loadCategories(), loadPosts(), loadCommentCount()]);
     this.setState({isLoading:false});
   };
 
@@ -71,7 +72,8 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>({
   loadCategories: ()=>dispatch(loadCategories()),
-  loadPosts: ()=>dispatch(loadAll())
+  loadPosts: ()=>dispatch(loadAll()),
+  loadCommentCount: ()=>dispatch(loadCommentCount())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,6 +1,7 @@
 import {
   getPosts,
   getPostsForCategory,
+  getPostCommentCount,
   getPost,
   addPost,
   editPost,
@@ -12,6 +13,7 @@ import {
 
 export const LOAD_ALL_POSTS = 'LOAD_ALL_POSTS';
 export const LOAD_POSTS_FOR_CATEGORY = 'LOAD_POSTS_FOR_CATEGORY';
+export const LOAD_POSTS_COMMENT_COUNT  ='LOAD_POSTS_COMMENT_COUNT';
 export const LOAD_POST = 'LOAD_POST';
 export const ADD_POST = 'ADD_POST';
 export const EDIT_POST = 'EDIT_POST';
@@ -31,6 +33,22 @@ const loadAllSuccess = (posts)=>({
 export const loadAll = ()=>(dispatch)=>
   getPosts()
     .then(posts=>dispatch(loadAllSuccess(posts)));
+
+
+const loadCommentCountSuccess = (postCommentCount)=>({
+  type: LOAD_POSTS_COMMENT_COUNT,
+  postCommentCount
+});
+
+
+/**
+ * Load comment counts for all posts
+ */
+
+export const loadCommentCount = ()=>(dispatch)=>
+  getPostCommentCount()
+    .then(postCommentCount=>dispatch(loadCommentCountSuccess(postCommentCount)));
+
 
 const loadCategorySuccess = (posts)=>({
   type: LOAD_POSTS_FOR_CATEGORY,

@@ -6,3 +6,5 @@ export const generateTimeStamp = ()=>Date.now();
 
 export const stringFormFieldRequired = (field)=>
   field !== undefined && field !== null && field !== '';
+
+export const doesExist = (item)=>item!== null && item!== undefined;

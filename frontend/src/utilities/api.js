@@ -130,6 +130,15 @@ export const getCommentsForPost = (id) =>
   fetch(`${baseUrl}/posts/${encodeURI(id)}/comments`, {headers})
     .then(res => res.json());
 
+
+/**
+ * Get comment counts for each post
+ * @returns {Promise.<Object>} containing post ids and comment counts
+ */
+export const getPostCommentCount = ()=>
+  fetch(`${baseUrl}/comments/count`, {headers})
+    .then(res=>res.json());
+
 /**
  * Get a specific comment
  * @param id {String} of comment
