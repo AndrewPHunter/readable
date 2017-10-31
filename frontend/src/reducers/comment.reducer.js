@@ -7,7 +7,7 @@ import {
   DOWNVOTE_COMMENT,
   DELETE_COMMENT
 } from '../actions/comment.actions';
-import {downVoteComment} from "../utilities/api";
+
 
 //all functions exported for testing
 
