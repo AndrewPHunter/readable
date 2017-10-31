@@ -4,14 +4,16 @@
   background-color: $md-white-base;
 }
 
-.post-table--vote{
+.post-table--actions{
   i{
     padding-right: 5px;
   }
-  i.thumbUp{
+  i.thumbUp,
+  i.edit{
     color: $md-green-a-400;
   }
-  i.thumbDown{
+  i.thumbDown,
+  i.delete{
     color: $md-red-a-400;
   }
 }

@@ -16,7 +16,9 @@ export default class SortablePostTable extends Component{
     sortBy: PropTypes.string,
     ascending: PropTypes.bool,
     upVote: PropTypes.func.isRequired,
-    downVote: PropTypes.func.isRequired
+    downVote: PropTypes.func.isRequired,
+    editPost: PropTypes.func.isRequired,
+    deletePost:  PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -92,11 +94,14 @@ export default class SortablePostTable extends Component{
         <TableColumn>
           Vote
         </TableColumn>
+        <TableColumn>
+          Actions
+        </TableColumn>
       </TableRow>
     </TableHeader>
   );
 
-  mapRowsToTableRows = (rows, upVote, downVote)=>(
+  mapRowsToTableRows = (rows, upVote, downVote, editPost, deletePost)=>(
     rows.map(row=>(
       <TableRow key={row.id} selectable={false}>
         <TableColumn onClick={this.props.rowSelected.bind(null, row)} className='md-pointer--hover'>
@@ -118,9 +123,15 @@ export default class SortablePostTable extends Component{
           {row.voteScore}
         </TableColumn>
         <TableColumn>
-          <div className='post-table--vote'>
-            <FontIcon className="thumbUp md-pointer--hover" onClick={upVote.bind(null, row.id)}>thumb_up</FontIcon>
-            <FontIcon className="thumbDown md-pointer--hover" onClick={downVote.bind(null, row.id)}>thumb_down</FontIcon>
+          <div className='post-table--actions'>
+            <FontIcon className="thumbUp md-pointer--hover" role="button" onClick={upVote.bind(null, row.id)}>thumb_up</FontIcon>
+            <FontIcon className="thumbDown md-pointer--hover" role="button" onClick={downVote.bind(null, row.id)}>thumb_down</FontIcon>
+          </div>
+        </TableColumn>
+        <TableColumn>
+          <div className='post-table--actions'>
+            <FontIcon className="edit md-pointer--hover" role="button" onClick={(e)=>editPost(e, row)}>edit</FontIcon>
+            <FontIcon className="delete md-pointer--hover" role="button" onClick={deletePost.bind(null, row.id)}>delete_forever</FontIcon>
           </div>
         </TableColumn>
       </TableRow>
@@ -129,13 +140,13 @@ export default class SortablePostTable extends Component{
 
   render(){
 
-    const {id, upVote, downVote} = this.props;
+    const {id, upVote, downVote, editPost, deletePost} = this.props;
     const {rows, sortBy, ascending} = this.state;
     const tableHeader = this.buildTableHeader({by: sortBy.replace('-',''), ascending});
-    const tableRows = this.mapRowsToTableRows(rows, upVote, downVote);
+    const tableRows = this.mapRowsToTableRows(rows, upVote, downVote, editPost, deletePost);
 
 
-    return(
+    return (
       <Paper zDepth={1} className="postTable">
         <DataTable baseId={id}>
           {tableHeader}
@@ -144,6 +155,7 @@ export default class SortablePostTable extends Component{
           </TableBody>
         </DataTable>
       </Paper>
+
     );
   }
 }

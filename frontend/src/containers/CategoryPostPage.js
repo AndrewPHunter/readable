@@ -10,7 +10,10 @@ class CategoryPostPage extends Component{
 
   static propTypes = {
     posts:PropTypes.arrayOf(PropTypes.object),
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
+    upVote: PropTypes.func.isRequired,
+    downVote: PropTypes.func.isRequired,
+    deletePost:  PropTypes.func.isRequired
   };
 
   onPostSelected = (post)=>
@@ -24,6 +27,7 @@ class CategoryPostPage extends Component{
         rowSelected={this.onPostSelected}
         upVote={this.props.upVotePost}
         downVote={this.props.downVotePost}
+        deletePost={this.props.deletePost}
       />
     );
   }
@@ -36,7 +40,7 @@ const mapStateToProps = ({posts, postCommentCount}, {match})=> {
       .filter(post => !post.deleted && post.category === match.params.category)
       .map(post => ({
         ...post,
-        ['commentCount']: doesExist(postCommentCount[post.id])
+        'commentCount': doesExist(postCommentCount[post.id])
           ? postCommentCount[post.id]
           : 0
 
@@ -50,6 +54,7 @@ const mapStateToProps = ({posts, postCommentCount}, {match})=> {
 const mapDispatchToProps = (dispatch) => ({
   upVotePost: (id)=>dispatch(postActions.upVote(id)),
   downVotePost: (id)=>dispatch(postActions.downVote(id)),
+  deletePost: (id)=>dispatch(postActions.deletePost(id))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CategoryPostPage));
