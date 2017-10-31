@@ -1,0 +1,21 @@
+@import '../globals';
+
+.notfound-page{
+  background-color: $md-white-base;
+
+  .link-home{
+    button{
+      background-color: $md-green-400;
+      float: right;
+      padding-right:1em;
+      i{
+        color: $md-white-base;
+      }
+      a{
+        color: $md-white-base;
+        text-decoration: none;
+      }
+    }
+
+  }
+}
