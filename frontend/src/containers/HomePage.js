@@ -59,14 +59,14 @@ class HomePage extends Component {
 
   render(){
 
-    const {categories, upVotePost, downVotePost, deletePost} = this.props;
+    const {posts, categories, upVotePost, downVotePost, deletePost} = this.props;
     const {post, visible, pageX, pageY} = this.state;
 
     return(
       <div>
         <SortablePostTable
           id='HomePostTable'
-          rows={this.props.posts}
+          rows={posts}
           rowSelected={this.onPostSelected}
           upVote={upVotePost}
           downVote={downVotePost}
