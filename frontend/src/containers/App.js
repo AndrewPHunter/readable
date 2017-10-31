@@ -9,8 +9,9 @@ import Shell from '../components/Shell';
 import LoadingDialog from '../components/LoadingDialog';
 import HomePage from './HomePage';
 import CategoryPostPage from './CategoryPostPage';
-import ReadPostPage from './ReadPostPage';
 import NewPostPage from './NewPostPage';
+import DeletedPostHandler from './DeletedPostHandler';
+import NotFoundPage from '../components/NotFoundPage';
 
 import {loadCategories} from '../actions/category.actions';
 import {loadAll, loadCommentCount} from '../actions/post.actions';
@@ -50,7 +51,8 @@ class App extends Component {
             <Route exact path="/" component={HomePage}/>
             <Route path="/categories/:category" component={CategoryPostPage}/>
             <Route exact path="/post/newPost" component={NewPostPage}/>
-            <Route path="/:category/:id" component={ReadPostPage}/>
+            <Route path="/:category/:id" component={DeletedPostHandler}/>
+            <Route path="*" component={NotFoundPage}/>
           </Switch>
         </Shell>
       </BrowserRouter>

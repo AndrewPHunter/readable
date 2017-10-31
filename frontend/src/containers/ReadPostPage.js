@@ -115,7 +115,7 @@ class ReadPostPage extends Component{
     return (
       <div>
         <PostDetailPage
-          post={this.props.post}
+          post={this.props.post || {}}
           commentCount={this.props.comments.length}
           upVote={this.props.upVotePost}
           downVote={this.props.downVotePost}
@@ -129,39 +129,38 @@ class ReadPostPage extends Component{
           addComment={this.addComment}
           editComment={this.onEditComment}
           deleteComment={deleteComment}
-        />
-        <FullPageDialog
+          />
+          <FullPageDialog
           title={title}
           visible={visible}
           pageX={pageX}
           pageY={pageY}
           onDismiss={this.onDismiss}
-        >
+          >
           {this.state.editPost &&
-            <PostForm post={post}
+          <PostForm post={post}
                     categories={categories}
                     onSave={this.onUpdatePost}
                     onCancel={this.onDismiss}
-            />
+          />
           }
           {!this.state.editPost &&
-            <CommentForm comment={comment}
-                         parentId={post.id}
-                         onSave={this.onUpdateComment}
-                         onCancel={this.onDismiss}
+          <CommentForm comment={comment}
+                       parentId={post.id}
+                       onSave={this.onUpdateComment}
+                       onCancel={this.onDismiss}
 
-            />
+          />
           }
-        </FullPageDialog>
+          </FullPageDialog>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, {match})=>({
-  post: state.posts.filter(post=>post.id === match.params.id)[0] || {},
-  comments: state.comments.filter(comment=>!comment.deleted && comment.parentId === match.params.id).sort(sortBy('-voteScore')),
-  categories: state.categories.map(category=>category.name)
+const mapStateToProps = ({comments, categories}, {match})=>({
+  comments: comments.filter(comment=>!comment.deleted && comment.parentId === match.params.id).sort(sortBy('-voteScore')),
+  categories: categories.map(category=>category.name)
 });
 
 const mapDispatchToProps = (dispatch) => ({
