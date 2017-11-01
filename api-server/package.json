@@ -11,7 +11,7 @@
   ],
   "author": "David Harris",
   "license": "ISC",
-  "scripts":{
+  "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
