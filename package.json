@@ -10,8 +10,6 @@
     "npm-run-all": "^4.1.1"
   },
   "scripts": {
-    //This concoction is the only way to get this to work. The prefix option errors out on Windows 10
-    //Found: https://stackoverflow.com/questions/13498403/npm-install-dependencies-for-a-package-in-a-different-folder
     "setup-server": "(cd api-server && npm install)",
     "setup-frontend": "(cd frontend && npm install)",
     "setup-children": "npm-run-all -s setup-server setup-frontend",
